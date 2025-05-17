@@ -1,0 +1,52 @@
+<h2>Visual feedback and error messages</h2>
+<form action="" #userform="ngForm">
+    <h3>Entire Form validation :- {{userform.form.valid}}</h3>
+    <div>
+        <!-- single validation -->
+        <input #uName="ngModel" name="username" placeholder="Username" type="text" [(ngModel)]="userModel.username" required
+        [class.is-invalid]="uName.invalid && uName.touched">
+        <small class="text-danger" [class.d-none]="uName.valid || uName.untouched">Username is required</small>
+    </div>
+    <div>
+        <input #uMail="ngModel" name="Email" placeholder="email" type="email"[(ngModel)]="userModel.Email">
+    </div>
+    <div>
+        <!-- multiple validation -->
+
+<!-- for multiple validation create block and write the validations ,those can be acccessed by the errors property  -->
+        <input #uPhone="ngModel" name="Phone" placeholder="phone number" type="tel" [(ngModel)]="userModel.Phone"
+        pattern="^\d{10}$" required [class.is-invalid]="uPhone.invalid && uPhone.touched">
+        <div>
+            <!-- <small class="text-danger" [class.d-none]="uPhone.valid || uPhone.untouched">Phone number is required and must be 10 digits</small> -->
+            <div *ngIf="uPhone.errors && (uPhone.invalid || uPhone.touched)">
+                <small class="text-danger" *ngIf="uPhone.errors['required']">Phone number is required</small>
+                <small class="text-danger" *ngIf="uPhone.errors['pattern']">Phone number must be 10 digits</small>
+            </div>
+        </div>
+    </div>
+    <div>
+        <!-- select validation -->
+        <select (blur)="selectValidation(tech.value)" (change)="selectValidation(tech.value)" [class.is-invalid]="techHasError && tech.touched" name="InterestedTech" id="" [(ngModel)]="userModel.InterestedTech" #tech="ngModel">
+            <option value="default">I'm interested in</option>
+            <option *ngFor="let tech of technologies" value="">
+                {{tech}}
+            </option>
+            
+        </select>
+        <small class="text-danger" [class.d-none]="!techHasError || tech.untouched" >please select a topic</small>
+    </div>
+    <div>
+        <input #uTime="ngModel" name="time" type="text" [(ngModel)]="userModel.time">
+    </div>
+    <div>
+        <input #uStatus="ngModel" name="CheckStatus" type="checkbox" [(ngModel)]="userModel.CheckStatus">I agree Terms & Conditions
+    </div>
+
+    <!-- entire form validation -->
+
+    <!-- this do not work for custom validations, to make them work use  -->
+     <button [disabled]="userform.form.invalid || techHasError" class="btn btn-primary">Submit</button>
+</form>
+
+
+

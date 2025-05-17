@@ -1,0 +1,128 @@
+<h1 style="text-align: center;">App component</h1>
+<div>
+  <h3>template Driven Form</h3>
+  <p>A form approach where most logic is handled inside the HTML template using Angular directives.
+      It uses Angular’s FormsModule and supports two-way binding with [((ngModel))].
+      ngForm makes normal form as Angular Controlled Form
+  </p>
+  <p>Every input must have:
+      A name attribute and (ngModel) , we alson have ngModelGroup to group input fields
+  </p>
+</div><br><br><hr>
+
+<!-- template driven forms -->
+<form #userForm="ngForm" action="">
+
+  <!-- <div ngModelGroup="adress">              
+    <label>Street</label>
+    <input type="text" name="street" (ngModel)>
+    <label>city</label>
+    <input type="text" name="city" (ngModel)>
+    <label>Pincode</label>
+    <input type="number" name="pin" (ngModel)>
+  </div> -->
+
+  <!-- <div class="form-group">
+    <label for="">name</label>
+    <input type="text" class="form-control" name="username" (ngModel)>
+  </div>
+
+  <div class="form-group">
+    <label for="">E-mail</label>
+    <input type="email" class="form-control" name="Email" (ngModel)>
+  </div>
+
+  <div class="form-group">
+    <label for="">Phone</label>
+    <input type="tel" class="form-control" name="Phone" (ngModel)>
+  </div>
+
+  <div class="form-group">
+    <label>Select your intrested technology</label><br>
+    <select  class="custom-select" name="InterestedTech" (ngModel)>
+      <option selected value="">I'm interested in</option>
+      <option *ngFor="let tech of technologies" [value]="tech">
+        {{tech}}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label>Time Preference</label>
+      <div class="form-check">
+        <input  type="radio" name="time" value="morning" (ngModel)>
+        <label for="" class="form-check-label">Morning (9:00 AM - 12:00 PM)</label>
+      </div>
+      <div class="form-check">
+        <input  type="radio" name="time" value="evening" (ngModel)>
+        <label for="" class="form-check-label">Evening (3:00 PM - 6:00 PM)</label>
+      </div>
+  </div>
+ 
+  <div class="form-group">
+    <input type="checkbox" name="CheckStatus" id="" (ngModel)>
+    <label for="">Send me promotional offers</label>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-primary" value="Submit">Submit</button>
+  </div>
+</form> -->
+<p>{{ userForm.value | json }}</p><hr><hr>
+
+<!-- Binding data to a model -->
+<h2>Binding data to a Model</h2>
+
+<p>{{ userModel | json }}</p>
+<div class="form-group"> 
+    <label for="">name</label>
+    <input type="text" class="form-control" name="username" [(ngModel)]="userModel.username">
+  </div>
+
+  <div class="form-group">
+    <label for="">E-mail</label>
+    <input type="email" class="form-control" name="Email" [(ngModel)]="userModel.Email">
+  </div>
+
+  <div class="form-group">
+    <label for="">Phone</label>
+    <input type="tel" class="form-control" name="Phone" [(ngModel)]="userModel.Phone">
+  </div>
+
+  <div class="form-group">
+    <label>Select your intrested technology</label><br>
+    <select  class="custom-select" name="InterestedTech" [(ngModel)]="userModel.InterestedTech">
+      <option value="">I'm interested in</option>
+      <option *ngFor="let tech of technologies" [value]="tech">
+        {{tech}}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label>Time Preference</label>
+      <div class="form-check">
+        <input  type="radio" name="time" value="morning" [(ngModel)]="userModel.time">
+        <label for="" class="form-check-label">Morning (9:00 AM - 12:00 PM)</label>
+      </div>
+      <div class="form-check">
+        <input  type="radio" name="time" value="evening"  [(ngModel)]="userModel.time">
+        <label for="" class="form-check-label">Evening (3:00 PM - 6:00 PM)</label>
+      </div>
+  </div>
+ 
+  <div class="form-group">
+    <input type="checkbox" name="CheckStatus" id=""  [(ngModel)]="userModel.CheckStatus">
+    <label for="">Send me promotional offers</label>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-primary" value="Submit">Submit</button>
+  </div>
+</form><hr><hr>
+<app-validations></app-validations>
+<app-error-messages></app-error-messages>
+
+
+
+

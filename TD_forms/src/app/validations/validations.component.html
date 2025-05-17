@@ -1,0 +1,37 @@
+
+<h2>Tracking state and validations</h2>
+<p>to track state and validations we have to assign ngModel to a reference variable to the input field,
+   by doing that template reference varaible points the ngmodel of particular input field.
+   If we just create template reference without assigning ngModel it points out input field in DOM.
+</p>
+<form #form="ngForm" action="">
+    <div>
+        <input #touchvalidity="ngModel" name="username" type="text" [(ngModel)]="validation.username" placeholder="Username" >
+        <h6>touchedvalidity :- {{touchvalidity.touched}}</h6>
+    </div>
+
+    <div>
+        <input #dirtyvalid="ngModel" name="email" type="email" [(ngModel)]="validation.Email" placeholder="E-mail" >
+        <h6>dirtyvalidity :- {{dirtyvalid.dirty}}</h6>
+    </div>
+    
+     <div>
+        <input #pristinevalid="ngModel" name="Phone" type="tel" [(ngModel)]="validation.Phone" placeholder="mobile Number" >
+        <h6>pristinedirtyvalidity :- {{pristinevalid.pristine}}</h6>
+    </div>
+
+     <div>
+        <input #validity="ngModel" name="CheckStatus" type="checkbox" [(ngModel)]="validation.CheckStatus" required>Select to get updates
+        <h6>validity :- {{validity.valid}}</h6>
+    </div>
+</form>
+<style>
+    input{
+        width: 80%;
+    }
+</style>
+
+
+
+
+
