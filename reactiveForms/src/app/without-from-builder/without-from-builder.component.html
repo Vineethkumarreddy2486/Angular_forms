@@ -1,0 +1,46 @@
+<p>without-from-builder works!</p>
+<div class="container-fluid">
+  <form action="" [formGroup]="userForm">
+    <div class="form-group">
+      <!-- .errors? should be use when we have to check more more validations on one field -->
+      <!-- we can access like controls['fName'] or controls.fName -->
+      <input type="text" placeholder="Username" formControlName="fName" class="form-control">*
+      <div>
+        @if(userForm.controls['fName'].touched){
+        @if(userForm.controls['fName'].errors?.['required']){
+        <span class="text-danger">Name is required</span>
+        }
+        @if(userForm.controls['fName'].errors?.['minlength']){
+        <span class="text-danger">minimus 5 characters are required</span>
+        }
+       }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" placeholder="E-Mail" formControlName="email" class="form-control">
+      <div>
+        @if(userForm.controls['email'].touched){
+        @if(userForm.controls['email'].errors?.['required']){
+        <span class="text-danger">Email is required</span>
+        }
+        @if(userForm.controls['email'].errors?.['email']){
+        <span class="text-danger">Invalid email format</span>
+        }
+        }
+      </div>
+    </div>
+    <div formGroupName="adress">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="state" formControlName="state">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="city" formControlName="city">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="pincode" formControlName="pin code">
+      </div>
+    </div>
+    <button class="btn btn-primary" [disabled]="userForm.invalid">submit</button>
+  </form>
+</div>

@@ -1,0 +1,80 @@
+
+<!-- <p>formbuilder works!</p>
+{{ userForm.value | json}}
+<div class="container-fluig">
+    <form action="" [formGroup]="userForm">
+        <div class="form-group">
+            <input [class.is-invalid]="userName?.invalid && userName?.touched" type="text" class="form-control" placeholder="username" formControlName="userName">
+            @if(userName?.invalid && userName?.touched){
+                    @if(userName?.errors?.['required']){
+                        <small class="text-danger">username is required</small>
+                    }
+                    @if(userName?.errors?.['minlength']){
+                        <small class="text-danger">username must be atleast 5 characters</small>
+                    }
+            }
+        </div>
+        <div class="form-group">
+            <input [class.is-invalid]="userEmail?.invalid && userEmail?.touched" type="text" class="form-control" placeholder="email" formControlName="userEmail">
+            @if(userEmail?.invalid && userEmail?.touched){
+                @if(userEmail?.errors?.['required']){
+                    <small class="text-danger">Email is required</small>
+                }
+                @if(userEmail?.errors?.['email']){
+                    <small class="text-danger">Invalid Email format</small>
+                }
+            }
+        </div>
+
+        <div formGroupName="adress">
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="state">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="city">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="pincode">
+            </div>
+        </div>
+    </form>
+</div> -->
+
+
+<!-- Error Handling From Script -->
+<p>with formbuilder</p>
+<div class="container_fluid">
+    <form action="" [formGroup]="userForm">
+        <div class="form-group">
+            <label for="">username</label>
+            <input [class.is-invalid]="userName?.invalid && userName?.touched" type="text" class="form-control" formControlName="userName">
+            @if(userNameErrors){
+                <small class="text-danger">{{ userNameErrors}}</small>
+            }
+        </div>
+        <div class="form-group">
+            <label for="">Email</label>
+            <input [class.is-invalid]="userEmail?.invalid && userEmail?.touched" type="text" class="form-control" formControlName="userEmail">
+            @if(userEmailErrors){
+                <small class="text-danger">{{userEmailErrors}}</small>
+            }
+        </div>
+
+        <div formGroupName="adress">Adress
+            <div class="form-group">
+                <label for="">State</label>
+                <input type="text" class="form-control" formControlName="state">
+            </div>
+            <div class="form-group">
+                <label for="">City</label>
+                <input type="text" class="form-control" formControlName="city">
+            </div>
+            <div class="form-group">
+                <label for="">Pincode</label>
+                <input type="number" class="form-control" formControlName="pincode">
+            </div>
+        </div>
+
+        <button (click)="onSubmit()" [disabled]="userForm.invalid" class="btn btn-primary" type="button">Submit</button>
+    </form>
+</div>
